@@ -23,19 +23,22 @@ public class KatalonFormSteps {
 
     }
 
-    @When("^I register user with \"([^\"]*)\" \"([^\"]*)\"$")
-    public void iRegisterUserWith(String name, String lastName) throws Throwable {
+
+    @When("^I register user with \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
+    public void iRegisterUserWith(String name, String lastName, String date, String address, String email, String password, String company, String comment) throws Throwable {
 //        WebElement firstName = driver.findElement(By.id("first-name"));
 //        firstName.sendKeys(name);
 //        WebElement lastNameElement = driver.findElement(By.id("last-name"));
 //        lastNameElement.sendKeys(lastName);
         // to samo można napisać z użyciem PageObjectPattern
-        KatalonFormPage katalon = new KatalonFormPage(driver);
-        katalon.enterUserData(name, lastName);
+      KatalonFormPage katalon = new KatalonFormPage(driver);
+      katalon.enterUserData(name, lastName, date, address, email, password, company,  comment);
     }
 
     @Then("^User is successfully registered$")
     public void userIsSuccessfullyRegistered() {
         //
     }
-}
+
+
+    }
