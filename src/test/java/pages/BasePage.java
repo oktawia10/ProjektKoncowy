@@ -17,4 +17,7 @@ public class BasePage {
         element.clear();
         element.sendKeys(text);
     }
+
+    public void enterUserData(String email, String imie, String nazwisko, String haslo, String powtorzHaslo, String miasto, String kodPocztowy, String ulica, String numerDomuLokalu) {
+    }
 }
