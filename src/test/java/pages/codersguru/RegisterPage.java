@@ -51,8 +51,6 @@ public class RegisterPage extends BasePage {
     WebElement register;
 
     public void enterUserData(String userEmail, String userName, String userSurname, String userPassword, String userRepeatpass, String userCity, String userZipCode, String userStreet, String userLocNumber, boolean checkb, String button) {
-        // tą metodę trzeba rozszerzyć o pozostałe pola
-        // data urodzenia, etc...
         email.sendKeys(userEmail);
         name.sendKeys(userName);
         surname.sendKeys(userSurname);

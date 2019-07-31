@@ -36,9 +36,9 @@ public class KatalonFormSteps {
         katalon.enterUserData(name, lastName, gender, date, address, email, password, company, role, jobExpectation, waysOfDevelopment, comment);
     }
 
-    @Then("^User is successfully registered$")
-    public void userIsSuccessfullyRegistered() {
+   // @Then("^User is successfully registered$")
+    //public void userIsSuccessfullyRegistered() {
 
-    }
+    //}
 
 }

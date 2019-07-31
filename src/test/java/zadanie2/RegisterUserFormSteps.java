@@ -15,7 +15,7 @@ import pages.codersguru.RegisterPage;
 
 public class RegisterUserFormSteps {
     WebDriver driver;
-
+    String name;
 
     @Given("^I am on webside \"([^\"]*)\" and click button \"([^\"]*)\"$")
     public void iAmOnWebsideAndClickButton(String arg0, String arg1) throws Throwable {
@@ -24,14 +24,14 @@ public class RegisterUserFormSteps {
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.get(arg0);
-        WebElement registerButton= driver.findElement(By.xpath("/html/body/section[3]/div/form/input[2]"));
+        WebElement registerButton = driver.findElement(By.xpath("/html/body/section[3]/div/form/input[2]"));
         registerButton.click();
 
     }
 
     @And("^registration form opens \"([^\"]*)\"$")
     public void registrationFormOpens(String arg0) throws Throwable {
- System.out.println("tekst");
+        System.out.println("tekst");
 
     }
 
@@ -43,13 +43,12 @@ public class RegisterUserFormSteps {
         register.enterUserData(email, name, surname, password, repeatpass, city, zipCode, street, locNumber, checkb, button);
     }
 
-    @Then("^User is successfully registeed$")
-    public void userIsSuccessfullyRegisteed() {
+    @Then("^User is successfully registered$")
+    public void userIsSuccessfullyRegistered() {
         System.out.println("test proc");
         WebElement namelog = driver.findElement(By.id("user-name"));
         System.out.println(namelog.getText() + "!");
     }
-
 
 
 }
