@@ -1,9 +1,8 @@
 package zadanie5;
 
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,11 +10,14 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
 public class FlightsPage extends BasePage {
     WebDriver driver;
+
 
     public FlightsPage(WebDriver driver) {
         super(driver);
@@ -174,7 +176,7 @@ public class FlightsPage extends BasePage {
     WebElement CompleteBookingButton;
 
 
-    public void enterWithParameters1(String Title, String Name, String Surname, String Email, String Phone, String Birthday, String Card_Number, String Expiration, String Nationality, String cardVisa, String CreditCardNb, String ExpiryYear, String ExpiryMonth, String CardCVV) {
+    public void enterWithParameters1(String Title, String Name, String Surname, String Email, String Phone, String Birthday, String Card_Number, String Expiration, String Nationality, String cardVisa, String CreditCardNb, String ExpiryYear, String ExpiryMonth, String CardCVV) throws IOException {
 
         GuestBooking.click();
 
@@ -222,11 +224,31 @@ public class FlightsPage extends BasePage {
         //cardSerch.selectByVisibleText(cardVisa);
         ClickClearSend(cardNumberInput, CreditCardNb);
         ClickClearSend(cvvCheck, CardCVV);
+
+        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile2, new File("/tmp/dol.png"));
+
         CompleteBookingButton.click();
+
+
+        /*WebDriver augmentedDriver = new Augmenter().augment(driver);
+        File screenshot = ((TakesScreenshot)augmentedDriver).
+                getScreenshotAs(OutputType.FILE);*/
+
+
+
+// Now you can do whatever you need to do with it, for example somewhere
+
+        driver.manage().window().maximize();
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("/tmp/gora.png"));
+
+
+        System.out.print("!!!");
+
 
 
     }
 
-    public class webDriverTakeScreenshot {
-        public WebDriver driver;     }
+
 }
