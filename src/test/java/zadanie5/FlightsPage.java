@@ -2,6 +2,7 @@ package zadanie5;
 
 
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -27,6 +28,7 @@ public class FlightsPage extends BasePage {
 
     @FindBy(id = "cookyGotItBtn")
     WebElement cookies;
+
     @FindBy(xpath = "//*[@id=\"body-section\"]/section/div[2]/div/div/div[2]/ul/li[2]/a/i")
     WebElement flights;
 
@@ -76,16 +78,12 @@ public class FlightsPage extends BasePage {
         guzikOczekiwany.click();
 
 
-
-
-
         toAirport.click();
         airportTarget.sendKeys(To);
         WebDriverWait wait2 = new WebDriverWait(driver, 20);
         String xpathGuzika2 = "/html/body/div[19]/ul/li/div/span";
         WebElement guzikOczekiwany2 = wait2.until(ExpectedConditions.elementToBeClickable(By.xpath(xpathGuzika2)));
         guzikOczekiwany2.click();
-
 
 
         ClickClearSend(dateFrom, Departure);
@@ -142,22 +140,22 @@ public class FlightsPage extends BasePage {
     @FindBy(id = "expiration")
     WebElement expirationInput;
 
-    @FindBy(xpath = "//*[@id=\"select2-drop\"]/div/input")
+    @FindBy(xpath = "/html/body/div[5]/form/div/div[1]/div[2]/section/div/div[9]/div/div/a/span[1]")
     WebElement nationSerch;
 
-    @FindBy(className = "select2-match")
+    @FindBy(className = "select2-input")
     WebElement nationCheck;
 
-    @FindBy(id = "cardtype")
+    /*@FindBy(id = "cardtype")
     Select cardSerch;
 
     @FindBy(xpath = "//*[@id=\"cardtype\"]/option[5]")
-    WebElement cardCheck;
+    WebElement cardCheck;*/
 
     @FindBy(name = "card_no")
     WebElement cardNumberInput;
 
-    @FindBy(id = "expiry-month")
+    /*@FindBy(id = "expiry-month")
     WebElement expiryMonth;
 
     @FindBy(xpath = "//*[@id=\"expiry-month\"]/option[3]")
@@ -167,7 +165,7 @@ public class FlightsPage extends BasePage {
     WebElement expiryYear;
 
     @FindBy(xpath = "//*[@id=\"expiry-year\"]/option[5]")
-    WebElement expYearCheck;
+    WebElement expYearCheck;*/
 
     @FindBy(name = "security_code")
     WebElement cvvCheck;
@@ -183,69 +181,60 @@ public class FlightsPage extends BasePage {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         ClickClearSend(nameInput, Name);
-
+        Assert.assertNotNull(nameInput);
         ClickClearSend(surnameInput, Surname);
+        Assert.assertEquals("field is empty", surnameInput.getText(), "");
 
-        Select titleInput2= new Select(driver.findElement(By.id("title")));
-        //List<WebElement> wel=titleInput2.getOptions();
+        Select titleInput2 = new Select(driver.findElement(By.id("title")));
         titleInput2.selectByVisibleText(Title);
 
-        //((JavascriptExecutor)driver).executeScript("scroll(0,600)");
-        //((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", emailInput);
+
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //titleInput.selectByVisibleText(Title);
-        // emailInput.click();
-        //  emailInput.sendKeys(Email);
+
 
         ClickClearSend(emailInput, Email);
         ClickClearSend(phoneInput, Phone);
         ClickClearSend(birthdayInput, Birthday);
 
-        //ClickClearSend(nationCheck, Nationality);
 
-        Select expiryYear2= new Select(driver.findElement(By.id("expiry-year")));
-        //List<WebElement> wel=titleInput2.getOptions();
+        Select expiryYear2 = new Select(driver.findElement(By.id("expiry-year")));
         expiryYear2.selectByVisibleText(ExpiryYear);
 
-        Select ExpiryMonth2= new Select(driver.findElement(By.id("expiry-month")));
-        //List<WebElement> wel=titleInput2.getOptions();
+        Select ExpiryMonth2 = new Select(driver.findElement(By.id("expiry-month")));
         ExpiryMonth2.selectByVisibleText(ExpiryMonth);
 
 
         ClickClearSend(cardInput, Card_Number);
         ClickClearSend(expirationInput, Expiration);
-        Select cardSerch2= new Select(driver.findElement(By.id("cardtype")));
-       // List<WebElement> wel2=cardSerch2.getOptions();
-        cardSerch2.selectByVisibleText(cardVisa);/*
-        for (WebElement w: wel){
-            if (w.getText()==cardVisa) {w.click();}
-            System.out.println (": "+ w.getText());
-        }*/
-        //cardSerch.selectByVisibleText(cardVisa);
+
+        nationSerch.click();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+        nationCheck.sendKeys(Nationality.toUpperCase());
+
+        nationCheck.sendKeys((Keys.ENTER));
+
+        Select cardSerch2 = new Select(driver.findElement(By.id("cardtype")));
+
+        cardSerch2.selectByVisibleText(cardVisa);
+
         ClickClearSend(cardNumberInput, CreditCardNb);
         ClickClearSend(cvvCheck, CardCVV);
 
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+        File scrFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile2, new File("/tmp/dol.png"));
+
 
         CompleteBookingButton.click();
 
-
-        /*WebDriver augmentedDriver = new Augmenter().augment(driver);
-        File screenshot = ((TakesScreenshot)augmentedDriver).
-                getScreenshotAs(OutputType.FILE);*/
-
-
-
-// Now you can do whatever you need to do with it, for example somewhere
+        WebDriverWait waitpop = new WebDriverWait(driver, 5);
+        Alert alert = waitpop.until(ExpectedConditions.alertIsPresent());
+        alert.accept();
 
         driver.manage().window().maximize();
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile, new File("/tmp/gora.png"));
-
-
-        System.out.print("!!!");
-
 
 
     }
