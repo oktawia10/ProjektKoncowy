@@ -9,6 +9,7 @@ Feature: Register user on Coders Guru
 
     Examples:
       |Email       |Imie |Nazwisko|Haslo  |Powtorz haslo|Miasto   |Kod pocztowy|Ulica|Numer domu/lokalu|Zapoznalem sie|
-      |janek9@wp.pl|Janek|Kot     |testowe|testowe      |Warszawa |01-006      |Nowa  |17/52           |true          |
+      |janez@wp.pl |Janek|Kot     |testowe|testowe      |Warszawa |01-006      |Nowa  |17/52           |true          |
+      |janey@wp.pl |Janek|Kot     |testowe|testowe      |Warszawa |01-006      |Nowa  |17/52           |true          |
 
 

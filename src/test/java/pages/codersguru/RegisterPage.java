@@ -16,7 +16,7 @@ public class RegisterPage extends BasePage {
     }
 
 
-    @FindBy(id= "fos_user_registration_form_email")
+    @FindBy(id = "fos_user_registration_form_email")
     WebElement email;
 
     @FindBy(id = "fos_user_registration_form_name")
@@ -43,9 +43,8 @@ public class RegisterPage extends BasePage {
     @FindBy(id = "form_number")
     WebElement locNumber;
 
-    @FindBy( xpath= "//*[@id=\"registration-main-form\"]/div[12]/input")
+    @FindBy(xpath = "//*[@id=\"registration-main-form\"]/div[12]/input")
     WebElement checkx;
-
 
     @FindBy(id = "register-submit-btn")
     WebElement register;
@@ -60,20 +59,11 @@ public class RegisterPage extends BasePage {
         zipCode.sendKeys(userZipCode);
         street.sendKeys(userStreet);
         locNumber.sendKeys(userLocNumber);
-        System.out.println(checkb);
-        if (checkb==true){
+        if (checkb == true) {
             checkx.click();
         }
         register.click();
 
     }
 
-
-
-    // konstruktor i inicjalic=zacja pageFactory
-    //znajdzie elenmenty za pomoca findby
-
-    //napszcie metody które wpisuja uzytkownika i hasło i klikaja login {
-
-    // analogicznie jk login page
 }
